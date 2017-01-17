@@ -6,9 +6,13 @@ y_data = [1,2,3]
 W = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
 b = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
 
-hypothesis = W*x_data + b
+X = tf.placeholder(tf.float32)
+Y = tf.placeholder(tf.float32)
 
-cost = tf.reduce_mean(tf.square(hypothesis - y_data))
+#Our hypothesis
+hypothesis = W * X + b
+
+cost = tf.reduce_mean(tf.square(hypothesis - Y))
 
 a = tf.Variable(0.1)
 optimizer = tf.train.GradientDescentOptimizer(a)
@@ -16,10 +20,16 @@ train = optimizer.minimize(cost)
 
 init = tf.initialize_all_variables()
 
+#Launch the graph
 sess = tf.Session()
 sess.run(init)
 
+#Fit the line
 for step in range(2001):
-    sess.run(train)
+    sess.run(train, feed_dict={X:x_data, Y:y_data})
     if step % 20 == 0:
-        print(step, sess.run(cost), sess.run(W), sess.run(b))
+        print(step, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W), sess.run(b))
+
+#Learns best fit is W: [1], b:[0]
+print (sess.run(hypothesis, feed_dict={X:5}))
+print (sess.run(hypothesis, feed_dict={X:2.5}))
