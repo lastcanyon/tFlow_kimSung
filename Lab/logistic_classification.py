@@ -33,3 +33,11 @@ for step in range(2001):
     sess.run(train, feed_dict={X:x_data, Y:y_data})
     if step % 20 == 0:
         print(step, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W))
+
+
+# Ask to ML
+print('----------------------')
+# [1], [study_hour], [attendance]
+print(sess.run(hypothesis, feed_dict={X:[[1], [2], [2]]}) > 0.5) # 2시간 공부 / 2번 출석
+print(sess.run(hypothesis, feed_dict={X:[[1], [5], [5]]}) > 0.5) # 5시간 공부 / 5번 출석
+print(sess.run(hypothesis, feed_dict={X:[[1, 1], [4, 3], [3, 5]]}) > 0.5) # 4시간 공부/3번 출석 , 3시간 공부/5시간 출석
