@@ -34,3 +34,15 @@ with tf.Session() as sess:
         sess.run(optimizer, feed_dict={X:x_data, Y:y_data})
         if step % 200 == 0:
             print(step, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W))
+
+    a = sess.run(hypothesis, feed_dict={X:[[1, 11, 7]]}) # 46%
+    print(a, sess.run(tf.arg_max(a, 1)))
+
+    b = sess.run(hypothesis, feed_dict={X:[[1, 3, 4]]})  # 33%
+    print(b, sess.run(tf.arg_max(b, 1)))
+
+    c = sess.run(hypothesis, feed_dict={X:[[1, 1, 0]]})  # 27%
+    print(c, sess.run(tf.arg_max(c, 1)))
+
+    all = sess.run(hypothesis, feed_dict={X:[[1, 11, 7], [1, 3, 4], [1, 1, 0]]})
+    print(all, sess.run(tf.arg_max(all, 1)))
