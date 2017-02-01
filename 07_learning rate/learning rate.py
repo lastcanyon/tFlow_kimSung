@@ -16,7 +16,7 @@ W = tf.Variable(tf.zeros([3, 3])) # [입력 데이터 3개, 예측값 3개]
 hypothesis = tf.nn.softmax(tf.matmul(X, W))
 
 # Minimize error using cross entropy
-learning_rate = 0.001 # 너무 적음
+learning_rate = 0.1 # 너무 적음
 
 # Cross entropy
 cost = tf.reduce_mean(-tf.reduce_sum(Y*tf.log(hypothesis), reduction_indices=1))
