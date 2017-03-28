@@ -28,8 +28,8 @@ a = tf.Variable(0.1)
 optimizer = tf.train.GradientDescentOptimizer(a)
 train = optimizer.minimize(cost)
 
-# Initializa all variables.
-init = tf.initialize_all_variables()
+# Initializer all variables.
+init = tf.global_variables_initializer()
 
 # Launch the graph
 with tf.Session() as sess:
