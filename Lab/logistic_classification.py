@@ -14,7 +14,7 @@ W = tf.Variable(tf.random_uniform([1, len(x_data)], -1.0, 1.0))
 h = tf.matmul(W, X)
 hypothesis = tf.div(1., 1.+tf.exp(-h))
 # cost function
-cost = -tf.reduce_mean(Y*tf.log(hypothesis) + (1-Y)*tf.log(1-hypothesis))
+cost = -tf.reduce_mean(Y*tf.log(hypothesis) + (1-Y)*tf.log(1-hypothesis)) #cross entropy와 같음.
 
 # Minimize
 a = tf.Variable(0.1) # Learning rate, alpha

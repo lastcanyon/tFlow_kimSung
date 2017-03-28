@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import matplotlib.pyplot as plt
 
 xy = np.loadtxt('train.txt', unpack=True, dtype='float32')
 x_data = np.transpose(xy[0:3])
@@ -34,3 +35,8 @@ for step in range(2001):
     sess.run(optimizer, feed_dict={X:x_data, Y:y_data})
     if step % 200 == 0:
         print(step, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W))
+#
+# plt.plot(W_val, cost_val, 'ro')
+# plt.ylabel('Cost')
+# plt.xlabel('W')
+# plt.show()
